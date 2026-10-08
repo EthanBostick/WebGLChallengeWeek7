@@ -1,6 +1,12 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+/*
+Questions:
+1. Basic mesh material 
+2. They appear flat because they have no reflections, shadows, or texture
+*/
+
 // ---------------------------------------------------
 // Scene
 // ---------------------------------------------------
@@ -150,6 +156,23 @@ const redMaterial =
         color: 0xff4d4d
     });
 
+const goldMat =
+    new THREE.MeshStandardMaterial({
+        color: 0xffd43b,
+        metalness: 0.8,
+        roughness: 0.35
+    });
+
+const plasticMat =
+    new THREE.MeshPhongMaterial({
+        shininess:1
+    });
+
+const toonMat = 
+    new THREE.MeshToonMaterial({
+        color: 0xff4fd8
+    });
+
 const whiteMaterial =
     new THREE.MeshBasicMaterial({
         color: 0xf5f5f5
@@ -163,6 +186,25 @@ const orangeMaterial =
 const magentaMaterial =
     new THREE.MeshBasicMaterial({
         color: 0xff4fd8
+    });
+
+const treeMat =
+    new THREE.MeshLambertMaterial({
+        color: 0x2ecc71
+    });
+
+const awesomeMat =
+    new THREE.MeshPhysicalMaterial({
+        color: 0x4b5c2b,
+        shininess: 1,
+        roughness: 0.5
+    });
+
+const somethingMat =
+    new THREE.MeshNormalMaterial({
+        color: 0xff4daf,
+        metalness: 0.9,
+        shininess: 0.5
     });
 
 const purpleMaterial =
@@ -184,7 +226,7 @@ createPedestal(-9, -4);
 const sphere =
     new THREE.Mesh(
         new THREE.SphereGeometry(1, 32, 32),
-        redMaterial
+        goldMat
     );
 
 placeOnPedestal(sphere, -9, -4);
@@ -197,7 +239,7 @@ createPedestal(-3, -4);
 const cube =
     new THREE.Mesh(
         new THREE.BoxGeometry(2,2,2),
-        cyanMaterial
+        plasticMat
     );
 
 placeOnPedestal(cube, -3, -4);
@@ -223,7 +265,7 @@ createPedestal(9, -4);
 const statue =
     new THREE.Mesh(
         new THREE.ConeGeometry(1,3,32),
-        magentaMaterial
+        toonMat
     );
 
 placeOnPedestal(statue, 9, -4);
@@ -245,7 +287,7 @@ const torus =
             16,
             100
         ),
-        orangeMaterial
+        awesomeMat
     );
 
 placeOnPedestal(torus, -9, 5);
@@ -269,6 +311,11 @@ placeOnPedestal(pyramid, -3, 5);
 
 scene.add(pyramid);
 
+const spotLight = new THREE.SpotLight(0xfff54d,200);
+spotLight.position.set(0, 10, 0);
+spotLight.castShadow = true;
+scene.add(spotLight);
+
 createPedestal(3, 5);
 
 const normalObject =
@@ -279,7 +326,7 @@ const normalObject =
             100,
             16
         ),
-        purpleMaterial
+        awesomeMat
     );
 
 placeOnPedestal(normalObject, 3, 5);
@@ -297,7 +344,7 @@ const tree =
             3,
             6
         ),
-        greenMaterial
+        treeMat
     );
 
 placeOnPedestal(tree, 9, 5);
@@ -315,7 +362,7 @@ createPedestal(0, 0);
 const mystery =
     new THREE.Mesh(
         new THREE.DodecahedronGeometry(1.5),
-        whiteMaterial
+        somethingMat
     );
 
 placeOnPedestal(mystery, 0, 0);
