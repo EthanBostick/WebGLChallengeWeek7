@@ -1,5 +1,7 @@
 # Material Museum
 
+### Screenshot
+<img width="1012" height="651" alt="museum3D" src="https://github.com/user-attachments/assets/21311520-13a5-4a04-a9ed-48714495997b" />
 
 
 1) Which material looked the most realistic?
